@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Roboto:wght@500;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: auto;
+}
+body {
+    overflow: scroll;
+    background-color: rgb(255, 255, 255);
+    font-family: "lato";
+}
+.title a{
+    color: rgb(37, 70, 92);
+    text-decoration: none;
+}
+.container {
+    /* width: 50%; */
+    margin: 0 auto;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: solid 1px grey;
+}
+button {
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    color: white;
+    width: 100px;
+    font-weight: 500;
+    background-color: rgb(25, 114, 95);
+    letter-spacing: 1px;
+    font-size: 15px;
+    margin:0 10px;
+}
+.content-container {
+    display: flex;
+    width: auto;
+}
+.blog-list {
+    width: 100%;
+}
+.blog-sum {
+    width: 40%;
+    padding: 20px;
+    height:300px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(230, 230, 230);
+    margin: 10px;
+}
+.description {
+    margin: 20px;
+}
+.blog-hightlight {
+    padding: 20px 10px;
+    width: 100%;
+    background-color: rgb(224, 238, 250);
+    margin: 10px 0;
+    /* border-bottom: solid 1px grey; */
+    border-radius: 10px;
+}
+.blogTitle a {
+    color: rgb(39, 99, 76);
+    text-decoration: none;
+    padding: 10px;
+}
+.blogDesc {
+    padding: 10px;
+    color: rgb(54, 54, 54);
+}
+.comment-container {
+    /* background-color: antiquewhite; */
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+.comment-count {
+    padding: 10px 0;
+    border-bottom: solid 1px grey;
+}
+.comment-meta {
+    padding: 10px 0;
+}
+.comment-data {
+    padding: 10px;
+    font-size: 15px;
+}
+.post-comment {
+    padding: 10px 0;
+    margin-top: 10px;
+    border-top: solid 1px grey;
+}
+textarea {
+    padding: 15px;
+    margin: 10px 0;
+    width: 300px;
+    outline: none;
+    background-color: rgb(209, 209, 209);
+    border:none;
+    border-radius: 5px;
+}
+input[type='text'] {
+    padding: 15px;
+    margin: 10px 0;
+    outline: none;
+    background-color: rgb(199, 199, 199);
+    width: 300px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+}
+input[type="text"]::placeholder{
+    color: rgb(112, 112, 112);
+}

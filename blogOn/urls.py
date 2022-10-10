@@ -4,4 +4,5 @@ from blogOn import views
 urlpatterns = [
     path('', views.home, name = 'home'),
     path('blog_id=<int:pk>', views.blogDetail, name = 'blogDetail'),
+    path('comment_id=<int:pk>', views.comment, name = 'comment')
 ]

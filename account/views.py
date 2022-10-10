@@ -40,7 +40,7 @@ def signUp(request):
                 return redirect('/')
         else:
             return redirect('/')
-            
+
     else:
         return redirect('/')
 

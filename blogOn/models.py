@@ -19,5 +19,6 @@ class Blog(models.Model):
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, related_name = "comments", on_delete = models.CASCADE)
     user = models.ForeignKey(User, related_name = "comments", on_delete = models.CASCADE)
+    email = models.CharField(max_length=255, default="")
     comment = models.TextField()
     commentDate = models.DateTimeField(default = timezone.now)
