@@ -19,8 +19,9 @@
       <div class="content-container">
         <div class="blog-list">
           <div class="blog-hightlight" id="blogId_{{blog.id}}">
-            <h2 class="blogTitle">{{blog.title}}</h2>
-            <p class="blogDesc">{{blog.description}}</p>
+            <h2 class="blog-title"><a href = "{% url 'blogDetail' blog.id %}">{{blog.title}}</a></h2>
+            <p class="blog-desc">{{blog.description}}</p>
+            <p class="blog-share"><a href = "{% url 'sharePost' blog.id %}">Share this post</a></p>
           </div>
           <div class="comment-container">
             {% if blog.comments.all %}

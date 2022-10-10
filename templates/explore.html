@@ -18,8 +18,9 @@
         <div class="blog-list">
             {% for userBlog in userBlogs %}
                 <div class="blog-hightlight" id="blogId_{{userBlog.id}}">
-                    <h2 class="blogTitle"><a href = "{% url 'blogDetail' userBlog.id %}">{{userBlog.title}}</a></h2>
-                    <p class="blogDesc">{{userBlog.description}}</p>
+                    <h2 class="blog-title"><a href = "{% url 'blogDetail' userBlog.id %}">{{userBlog.title}}</a></h2>
+                    <p class="blog-desc">{{userBlog.description}}</p>
+                    <p class="blog-share">Share this post</p>
                 </div>
             {% endfor %}
         </div>

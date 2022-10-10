@@ -66,12 +66,12 @@ button {
     /* border-bottom: solid 1px grey; */
     border-radius: 10px;
 }
-.blogTitle a {
+.blog-title a {
     color: rgb(39, 99, 76);
     text-decoration: none;
     padding: 10px;
 }
-.blogDesc {
+.blog-desc {
     padding: 10px;
     color: rgb(54, 54, 54);
 }
@@ -117,4 +117,8 @@ input[type='text'] {
 }
 input[type="text"]::placeholder{
     color: rgb(112, 112, 112);
+}
+.blog-share {
+    padding: 10px;
+    color: blue;   
 }
