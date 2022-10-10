@@ -1,12 +1,26 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    Welcome {{user.username}} 
-    <a href = "account/logOut"><button>Logout</button></a>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>BlogOn</h1>
+        Welcome {{user.username}}
+      </div>
+      <div class="blog-list">
+        Here is the list of all blogs 
+        {% for userBlog in userBlogs %}
+            <div class="blog-hightlight" id="blogId_{{userBlog.id}}">
+                <a href = "{% url 'blogDetail' userBlog.id %}"><h2>{{userBlog.title}}</h2></a>
+                {{userBlog.description}}
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+    <a href="account/logOut"><button>Logout</button></a>
+  </body>
 </html>
