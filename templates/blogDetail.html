@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlogOn</title>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -24,26 +25,30 @@
             <p class="blog-share"><a href = "{% url 'sharePost' blog.id %}">Share this post</a></p>
           </div>
           <div class="comment-container">
-            {% if blog.comments.all %}
-                <h3 class="comment-count">{{blog.comments.count}} Comments</h3>
+            <div class="comment-list">
+                {% if blog.comments.all %}
+                <div class="count-container">
+                    <h3 id="comment-count">{{blog.comments.count}}</h3>
+                    <h3>Comments</h3>
+                </div>
                 {% for comment in blog.comments.all %}
                     <div class="blog-comment">
-                    <h5 class="comment-meta">
-                        Comment by {{comment.user.username}} {{comment.commentDate}}
-                    </h5>
-                    <h6 class="comment-data">{{comment.comment}}</h6>
+                        <h5 class="comment-meta">
+                            Comment by {{comment.user.username}}, {{comment.commentDate}}
+                        </h5>
+                        <h6 class="comment-data">{{comment.comment}}</h6>
                     </div>
                 {% endfor %} 
             {% else %}
                     <h4>There are no comments yet</h4>
             {% endif %}
-
+            </div>
             <div class="post-comment">
                 <h3>Add a Comment</h3>
                 <form
-                  action="{% url 'comment' blog.id %}"
                   autocomplete="off"
                   method="post"
+                  id="comment-post{{blog.id}}"
                   class="post-comment-form"
                 >
                   {% csrf_token %}
@@ -68,6 +73,46 @@
                   > </textarea><br />
                   <button type="submit" id="postComment">Comment</button>
                 </form>
+                <script>
+                    $("#comment-post{{blog.id}}").on("submit", function (e) {
+                      e.preventDefault();
+                      let form = $("#comment-post{{blog.id}}");
+                      let comment = $("#comment").val();
+                      let count = document.getElementById("comment-count");
+                      $.ajax({
+                        type: "POST",
+                        url: "{% url 'comment' blog.id%}",
+                        data: form.serialize(),
+                        success: function (data) {
+                            comment_element = '';
+                            if ($('#comment-count').length <= 0) {
+                                $('.comment-list').html('');
+                                comment_element += `<div class="count-container">
+                                    <h3 id="comment-count">1</h3>
+                                    <h3>Comments</h3>
+                                    </div>
+                                `
+                            } else {
+                                count.innerText = Number(count.innerText)+1;
+                            }
+
+                            comment_element += `
+                                <div class="blog-comment">
+                                    <h5 class="comment-meta">
+                                        Comment by {{user.username}}, Now
+                                    </h5>
+                                    <h6 class="comment-data">${comment}</h6>
+                                </div>                  
+                            `
+                          
+                            $('.comment-list').append(comment_element);
+                            form[0].reset();
+                         
+                        },
+                      });
+                      return false;
+                    });
+                  </script>
             </div>
           </div>
         </div>
