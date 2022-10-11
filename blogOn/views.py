@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from contextlib import redirect_stderr
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
@@ -44,8 +43,6 @@ def comment(request, pk):
         commentObj = Comment.objects.create(user = loggerInUser, blog = currentBlog, email = email, comment = commentData)
         commentObj.save()
         return HttpResponse('Done')
-    else:
-        return NULL
 
 def sharePost(request, pk):
     if request.method == "POST":
