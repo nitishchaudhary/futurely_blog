@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Roboto:wght@500;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: auto;
+}
+body {
+    overflow: scroll;
+    background-color: rgb(255, 255, 255);
+    font-family: "lato";
+}
+.title a{
+    color: rgb(37, 70, 92);
+    text-decoration: none;
+    color: rgb(204, 204, 204);
+}
+.container {
+    margin: 0 auto;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: rgb(240, 240, 240);
+    font-family: 'lato';
+    font-weight: 100;
+    background-color: rgb(4, 21, 36);
+    border-bottom: solid 1px grey;
+}
+.auth-container {
+    display: flex;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 60%;
+    justify-content: space-around;
+
+}
+.login-container, .signup-container {
+    padding: 10px;
+    margin:0 auto;
+    background-color: rgb(209, 223, 235);
+    border-radius: 10px;
+    text-align: center;
+}
+.auth-container input[type="text"], .auth-container input[type="password"]{
+    background-color: rgb(252, 252, 252);
+}
+.login-form form{
+    margin-top: 20px;
+}
+.login-container button {
+    margin-top: 47px;
+}
+header {
+    font-size:20px;
+    color: rgb(49, 49, 49);
+    border-bottom: solid 1px rgb(140, 140, 140);
+    padding: 10px;
+}
+button {
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    width: 100px;
+    font-weight: 500;
+    background-color: rgb(25, 114, 95);
+    letter-spacing: 1px;
+    font-size: 15px;
+    margin:0 10px;
+}
+button:hover {
+    background-color: rgb(32, 134, 112);
+    transition: 0.2s ease-in-out;
+}
+.content-container {
+    display: flex;
+    width: auto;
+    padding: 10px;
+}
+.blog-list {
+    width: 100%;
+}
+.blog-sum {
+    width: 40%;
+    padding: 20px;
+    height:300px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(230, 230, 230);
+    margin: 10px;
+}
+.description {
+    margin: 20px;
+}
+.blog-hightlight {
+    padding: 10px 10px;
+    width: 100%;
+    background-color: rgb(224, 238, 250);
+    margin: 10px 0;
+    border-radius: 10px;
+}
+.blog-title a {
+    color: rgb(39, 99, 76);
+    text-decoration: none;
+    padding: 10px;
+}
+.blog-desc {
+    padding: 10px;
+    color: rgb(54, 54, 54);
+}
+.comment-container {
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+#comment-count {
+    margin:0 5px;
+}
+.count-container {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: solid 1px grey;
+}
+.comment-meta {
+    padding: 10px 0;
+}
+.comment-data {
+    padding: 10px;
+    font-size: 15px;
+}
+.post-comment {
+    padding: 10px 0;
+    margin-top: 10px;
+    border-top: solid 1px grey;
+}
+textarea {
+    padding: 15px;
+    margin: 10px 0;
+    width: 300px;
+    font-size: 15px;
+    outline: none;
+    background-color: rgb(209, 209, 209);
+    border:none;
+    border-radius: 5px;
+}
+input[type='text'], input[type="password"] {
+    padding: 15px;
+    margin: 10px 0;
+    outline: none;
+    background-color: rgb(209, 209, 209);
+    width: 300px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+}
+input[type="text"]::placeholder{
+    color: rgb(112, 112, 112);
+}
+.blog-share {
+    padding: 10px;
+    color: blue;   
+}
+.paginator-container {
+    display: flex;
+    justify-content: space-between;
+}
+.pagination-button {
+    border-radius: 5px;
+    border: solid 1px rgb(4, 21, 36);
+    padding: 10px;
+    background:transparent;
+    color:blueviolet;
+}
+.pagination-button:hover{
+    background-color: rgb(25, 114, 95);
+    transition: 0.2s ease-in-out;
+    border: solid 1px rgb(25, 114, 95);
+    color: white;
+}
+.current-page {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: transparent;
+    background-color: rgb(25, 114, 95);
+    color: white;
+    text-align: center;
+}
