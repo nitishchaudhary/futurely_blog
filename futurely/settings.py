@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'futurely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd1f5hg43ola6h4',
-        'USER': 'vkrwmkjvrjgmzz',
-        'PASSWORD': '2bbf3b4e13a656e7d2ab625740f8340b2101f1f0f37ab793fe8b0573e4440663',
-        'HOST': 'ec2-52-70-45-163.compute-1.amazonaws.com',
-        'PORT': 5432,
+        'NAME': str(os.getenv("POSTGRES_DB_NAME")),
+        'USER': str(os.getenv("POSTGRES_USER")),
+        'PASSWORD': str(os.getenv("POSTGRES_PASSWORD")),
+        'HOST': str(os.getenv("POSTGRES_HOST")),
+        'PORT': os.getenv("POSTGRES_PORT"),
     }
 }
 
