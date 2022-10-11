@@ -6,6 +6,7 @@ from .models import Blog, Comment
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -14,8 +15,17 @@ def home(request):
         loggedInId = request.user.id
         loggedInUser = User.objects.get(id = loggedInId)
         userBlogs = Blog.objects.filter(user = loggedInUser).order_by('-datePosted')
+        p = Paginator(userBlogs, 5)
+        page_number = request.GET.get('page')
+        try:
+            page_obj = p.get_page(page_number) 
+        except PageNotAnInteger:
+            page_obj = p.page(1)
+        except EmptyPage:
+            page_obj = p.page(p.num_pages)
+        context = {'page_obj': page_obj}
         
-        return render(request, 'explore.html', {'userBlogs':userBlogs})
+        return render(request, 'explore.html', {'page_obj':page_obj})
     else:
         return render(request, 'home.html', {})
 

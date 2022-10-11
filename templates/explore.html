@@ -16,13 +16,26 @@
       </div>
       <div class="content-container">
         <div class="blog-list">
-            {% for userBlog in userBlogs %}
+            {% for userBlog in page_obj.object_list %}
                 <div class="blog-hightlight" id="blogId_{{userBlog.id}}">
                     <h2 class="blog-title"><a href = "{% url 'blogDetail' userBlog.id %}">{{userBlog.title}}</a></h2>
                     <p class="blog-desc">{{userBlog.description}}</p>
                     <p class="blog-share">Share this post</p>
                 </div>
             {% endfor %}
+            <div class="paginator-container">
+                <div>
+                    {%if page_obj.has_previous %} 
+                        <a href="?page={{page_obj.previous_page_number}}"><button class="pagination-button">Previos</button></a> 
+                    {% endif %}
+                </div>
+                <span class="current-page">{{page_obj.number}}</span> 
+                <div>
+                    {%if page_obj.has_next %} 
+                        <a href="?page={{page_obj.next_page_number}}"><button class="pagination-button">Next</button></a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
         <div class="blog-sum">
             <h1 class="title">BlogOn</h1>
