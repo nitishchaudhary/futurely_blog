@@ -18,12 +18,14 @@ body {
   color: rgb(204, 204, 204);
 }
 .container {
+  width: auto;
   margin: 0 auto;
 }
 .header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  width: 100%;
   color: rgb(240, 240, 240);
   font-family: "lato";
   font-weight: 100;
@@ -38,10 +40,16 @@ body {
   width: 60%;
   justify-content: space-around;
 }
+.error-mssg {
+  color: red;
+  margin-top: 5px;
+  font-size: 15px;
+}
 .login-container,
 .signup-container {
   padding: 10px;
   margin: 0 auto;
+  width: auto;
   background-color: rgb(209, 223, 235);
   border-radius: 10px;
   text-align: center;

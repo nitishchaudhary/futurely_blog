@@ -25,10 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jw1f2$(9g^5l-6)(p&(-wien0y6u4pu@e0ah-g^escdf)rw5#m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
     'blogon-futurely.herokuapp.com'
 ]
 
@@ -82,10 +81,11 @@ WSGI_APPLICATION = 'futurely.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'futurely',
-        'USER': 'postgres',
-        'PASSWORD': 'nitish',
-        'HOST': 'localhost'
+        'NAME': str(os.getenv("POSTGRES_DB_NAME")),
+        'USER': str(os.getenv("POSTGRES_USER")),
+        'PASSWORD': str(os.getenv("POSTGRES_PASSWORD")),
+        'HOST': str(os.getenv("POSTGRES_HOST")),
+        'PORT': os.getenv("POSTGRES_PORT"),
     }
 }
 
