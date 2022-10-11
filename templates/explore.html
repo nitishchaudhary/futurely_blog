@@ -15,6 +15,7 @@
         <a href="account/logOut"><button>Logout</button></a></h3>
       </div>
       <div class="content-container">
+        
         <div class="blog-list">
             {% for userBlog in page_obj.object_list %}
                 <div class="blog-hightlight" id="blogId_{{userBlog.id}}">
@@ -23,19 +24,23 @@
                     <p class="blog-share">Share this post</p>
                 </div>
             {% endfor %}
-            <div class="paginator-container">
-                <div>
-                    {%if page_obj.has_previous %} 
-                        <a href="?page={{page_obj.previous_page_number}}"><button class="pagination-button">Previos</button></a> 
-                    {% endif %}
-                </div>
-                <span class="current-page">{{page_obj.number}}</span> 
-                <div>
-                    {%if page_obj.has_next %} 
-                        <a href="?page={{page_obj.next_page_number}}"><button class="pagination-button">Next</button></a>
-                    {% endif %}
-                </div>
-            </div>
+            {% if page_obj.object_list.count > 0 %}
+              <div class="paginator-container">
+                  <div>
+                      {%if page_obj.has_previous %} 
+                          <a href="?page={{page_obj.previous_page_number}}"><button class="pagination-button">Previos</button></a> 
+                      {% endif %}
+                  </div>
+                  <span class="current-page">{{page_obj.number}}</span> 
+                  <div>
+                      {%if page_obj.has_next %} 
+                          <a href="?page={{page_obj.next_page_number}}"><button class="pagination-button">Next</button></a>
+                      {% endif %}
+                  </div>
+              </div>
+            {% else %}
+              <p class="no-content">There are no blogs to show. Add some blogs from Admin console</p>
+            {% endif %}
         </div>
         <div class="blog-sum">
             <h1 class="title">BlogOn</h1>
