@@ -148,7 +148,7 @@ button:hover {
 textarea {
     padding: 15px;
     margin: 10px 0;
-    width: 300px;
+    /* width: 300px; */
     font-size: 15px;
     outline: none;
     background-color: rgb(209, 209, 209);

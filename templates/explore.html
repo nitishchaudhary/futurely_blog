@@ -21,7 +21,7 @@
                 <div class="blog-hightlight" id="blogId_{{userBlog.id}}">
                     <h2 class="blog-title"><a href = "{% url 'blogDetail' userBlog.id %}">{{userBlog.title}}</a></h2>
                     <p class="blog-desc">{{userBlog.description}}</p>
-                    <p class="blog-share">Share this post</p>
+                    <p class="blog-share"><a href = "{% url 'sharePost' userBlog.id %}">Share this post</a></p>
                 </div>
             {% endfor %}
             {% if page_obj.object_list.count > 0 %}
@@ -39,13 +39,14 @@
                   </div>
               </div>
             {% else %}
-              <p class="no-content">There are no blogs to show. Add some blogs from Admin console</p>
+              <p class="no-content">There are no blogs to show. Add some blogs</p>
             {% endif %}
         </div>
         <div class="blog-sum">
             <h1 class="title">BlogOn</h1>
-            <p class="description"></p>This is my blog
-        </div>
+            <p class="description">This is my blog</p>
+            <a href="{% url 'writeBlog' %}"><button class="write-blog">Write Blog</button></a>
+          </div>
       </div>
     </div>
 </body>

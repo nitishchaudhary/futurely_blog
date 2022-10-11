@@ -65,4 +65,15 @@ def sharePost(request, pk):
         else:
             return redirect('/')
         
+def writeBlog(request):
+    if request.method == "POST":
+        loggedInId = request.user.id
+        loggerInUser = User.objects.get(id = loggedInId)
+        title = request.POST['title']
+        content = request.POST['blogContent']
+        blogObj = Blog.objects.create(user = loggerInUser, title = title, description = content)
+        blogObj.save()
+        return redirect('/')
+    elif request.method == "GET":
+        return render(request, 'writeBlog.html', {})
     

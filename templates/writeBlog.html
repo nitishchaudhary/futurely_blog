@@ -16,43 +16,31 @@
       </div>
       <div class="content-container">
         <div class="blog-list">
-                <div class="blog-hightlight" id="blogId_{{blog.id}}">
-                    <h3>Share " {{blog.title}} " throug email</h3>
+                <div class="blog-hightlight" >
+                    <h3>Write a new Blog</h3>
                 </div>
-                <div class="post-comment">
+                <div class="write-blog">
                     <form
-                      action="{% url 'sharePost' blog.id %}"
+                      action="{% url 'writeBlog' %}"
                       autocomplete="off"
                       method="post"
-                      class="post-comment-form"
+                      class="write-blog-form"
                     >
                       {% csrf_token %}
                       <input
                         type="text"
-                        name="username"
-                        id="username"
-                        placeholder="Username:"
-                      /><br />
-                      <input
-                        type="text"
-                        name="emailFrom"
-                        id="emailFrom"
-                        placeholder="Email:"
-                      /><br />
-                      <input
-                        type="text"
-                        name="emailTo"
-                        id="emailTo"
-                        placeholder="EmailTo:"
+                        name="title"
+                        id="title"
+                        placeholder="Title"
                       /><br />
                       <textarea
-                        name="emailComments"
-                        id="emailComments"
-                        rows="5"
-                        cols="50"
-                        placeholder="Share Comments"
+                        name="blogContent"
+                        id="blogContent"
+                        rows="15"
+                        cols="100"
+                        placeholder="Share Blog"
                       > </textarea><br />
-                      <button type="submit" id="sharePost">Share</button>
+                      <button type="submit" id="shareBlog">Share</button>
                     </form>
                 </div>
         </div>
