@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlogOn</title>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.7.1.min.js"
+    ></script>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h1 class="title"><a href="/">BlogOn</h1></a>
+        <h1 class="title"><a href="/">BlogOn</a></h1>
         <h3>
           Welcome {{user.username}}
           <a href="/account/logOut"><button>Logout</button></a>
@@ -20,106 +23,112 @@
       <div class="content-container">
         <div class="blog-list">
           <div class="blog-hightlight" id="blogId_{{blog.id}}">
-            <h2 class="blog-title"><a href = "{% url 'blogDetail' blog.id %}">{{blog.title}}</a></h2>
+            <h2 class="blog-title">
+              <a href="{% url 'blogDetail' blog.id %}">{{blog.title}}</a>
+            </h2>
             <p class="blog-desc">{{blog.description}}</p>
-            <p class="blog-share"><a href = "{% url 'sharePost' blog.id %}">Share this post</a></p>
+            <p class="blog-share">
+              <a href="{% url 'sharePost' blog.id %}">Share this post</a>
+            </p>
           </div>
           <div class="comment-container">
             <div class="comment-list">
-                {% if blog.comments.all %}
-                <div class="count-container">
-                    <h3 id="comment-count">{{blog.comments.count}}</h3>
-                    <h3>Comments</h3>
-                </div>
-                {% for comment in blog.comments.all %}
-                    <div class="blog-comment">
-                        <h5 class="comment-meta">
-                            Comment by {{comment.user.username}}, {{comment.commentDate}}
-                        </h5>
-                        <h6 class="comment-data">{{comment.comment}}</h6>
-                    </div>
-                {% endfor %} 
-            {% else %}
-                    <h4>There are no comments yet</h4>
-            {% endif %}
+              {% if blog.comments.all %}
+              <div class="count-container">
+                <h3 id="comment-count">{{blog.comments.count}}</h3>
+                <h3>Comments</h3>
+              </div>
+              {% for comment in blog.comments.all %}
+              <div class="blog-comment">
+                <h5 class="comment-meta">
+                  Comment by {{comment.user.username}}, {{comment.commentDate}}
+                </h5>
+                <h6 class="comment-data">{{comment.comment}}</h6>
+              </div>
+              {% endfor %} {% else %}
+              <h4>There are no comments yet</h4>
+              {% endif %}
             </div>
             <div class="post-comment">
-                <h3>Add a Comment</h3>
-                <form
-                  autocomplete="off"
-                  method="post"
-                  id="comment-post{{blog.id}}"
-                  class="post-comment-form"
+              <h3>Add a Comment</h3>
+              <form
+                autocomplete="off"
+                method="post"
+                id="comment-post{{blog.id}}"
+                class="post-comment-form"
+              >
+                {% csrf_token %}
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Username"
+                /><br />
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                /><br />
+                <textarea
+                  name="comment"
+                  id="comment"
+                  rows="5"
+                  cols="50"
+                  placeholder="Post your comment"
                 >
-                  {% csrf_token %}
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Username"
-                  /><br />
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                  /><br />
-                  <textarea
-                    name="comment"
-                    id="comment"
-                    rows="5"
-                    cols="50"
-                    placeholder="Post your comment"
-                  > </textarea><br />
-                  <button type="submit" id="postComment">Comment</button>
-                </form>
-                <script>
-                    $("#comment-post{{blog.id}}").on("submit", function (e) {
-                      e.preventDefault();
-                      let form = $("#comment-post{{blog.id}}");
-                      let comment = $("#comment").val();
-                      let count = document.getElementById("comment-count");
-                      $.ajax({
-                        type: "POST",
-                        url: "{% url 'comment' blog.id%}",
-                        data: form.serialize(),
-                        success: function (data) {
-                            comment_element = '';
-                            if ($('#comment-count').length <= 0) {
-                                $('.comment-list').html('');
-                                comment_element += `<div class="count-container">
+                </textarea
+                ><br />
+                <button type="submit" id="postComment">Comment</button>
+              </form>
+              <script>
+                $("#comment-post{{blog.id}}").on("submit", function (e) {
+                  e.preventDefault();
+                  let form = $("#comment-post{{blog.id}}");
+                  let comment = $("#comment").val();
+                  let count = document.getElementById("comment-count");
+                  $.ajax({
+                    type: "POST",
+                    url: "{% url 'comment' blog.id%}",
+                    data: form.serialize(),
+                    success: function (data) {
+                      comment_element = "";
+                      if ($("#comment-count").length <= 0) {
+                        $(".comment-list").html("");
+                        comment_element += `<div class="count-container">
                                     <h3 id="comment-count">1</h3>
                                     <h3>Comments</h3>
                                     </div>
-                                `
-                            } else {
-                                count.innerText = Number(count.innerText)+1;
-                            }
+                                `;
+                      } else {
+                        count.innerText = Number(count.innerText) + 1;
+                      }
 
-                            comment_element += `
+                      comment_element += `
                                 <div class="blog-comment">
                                     <h5 class="comment-meta">
                                         Comment by {{user.username}}, Now
                                     </h5>
                                     <h6 class="comment-data">${comment}</h6>
                                 </div>                  
-                            `
-                          
-                            $('.comment-list').append(comment_element);
-                            form[0].reset();
-                         
-                        },
-                      });
-                      return false;
-                    });
-                  </script>
+                            `;
+
+                      $(".comment-list").append(comment_element);
+                      form[0].reset();
+                    },
+                  });
+                  return false;
+                });
+              </script>
             </div>
           </div>
         </div>
         <div class="blog-sum">
           <h1 class="title">BlogOn</h1>
           <p class="description">This is my blog</p>
-          <a href="{% url 'writeBlog' %}"><button class="write-blog">Write Blog</button></a>
+          <a href="{% url 'writeBlog' %}"
+            ><button class="write-blog">Write Blog</button></a
+          >
         </div>
       </div>
     </div>

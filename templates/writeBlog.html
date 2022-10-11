@@ -10,46 +10,52 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1 class="title"><a href="/">BlogOn</h1></a>
-        <h3>Welcome {{user.username}}
-        <a href="/account/logOut"><button>Logout</button></a></h3>
+        <h1 class="title"><a href="/">BlogOn</a></h1>
+        <h3>
+          Welcome {{user.username}}
+          <a href="/account/logOut"><button>Logout</button></a>
+        </h3>
       </div>
       <div class="content-container">
         <div class="blog-list">
-                <div class="blog-hightlight" >
-                    <h3>Write a new Blog</h3>
-                </div>
-                <div class="write-blog">
-                    <form
-                      action="{% url 'writeBlog' %}"
-                      autocomplete="off"
-                      method="post"
-                      class="write-blog-form"
-                    >
-                      {% csrf_token %}
-                      <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        placeholder="Title"
-                      /><br />
-                      <textarea
-                        name="blogContent"
-                        id="blogContent"
-                        rows="15"
-                        cols="100"
-                        placeholder="Share Blog"
-                      > </textarea><br />
-                      <button type="submit" id="shareBlog">Share</button>
-                    </form>
-                </div>
+          <div class="blog-hightlight">
+            <h3>Write a new Blog</h3>
+          </div>
+          <div class="write-blog">
+            <form
+              action="{% url 'writeBlog' %}"
+              autocomplete="off"
+              method="post"
+              class="write-blog-form"
+            >
+              {% csrf_token %}
+              <input
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Title"
+              /><br />
+              <textarea
+                name="blogContent"
+                id="blogContent"
+                rows="15"
+                cols="100"
+                placeholder="Share Blog"
+              >
+              </textarea
+              ><br />
+              <button type="submit" id="shareBlog">Share</button>
+            </form>
+          </div>
         </div>
         <div class="blog-sum">
-            <h1 class="title">BlogOn</h1>
-            <p class="description">This is my blog</p>
-            <a href="{% url 'writeBlog' %}"><button class="write-blog">Write Blog</button></a>
+          <h1 class="title">BlogOn</h1>
+          <p class="description">This is my blog</p>
+          <a href="{% url 'writeBlog' %}"
+            ><button class="write-blog">Write Blog</button></a
+          >
         </div>
       </div>
     </div>
-</body>
+  </body>
 </html>

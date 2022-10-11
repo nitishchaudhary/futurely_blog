@@ -45,5 +45,7 @@ def signUp(request):
         return redirect('/')
 
 def logOut(request):
-    logout(request)
+    if request.user.is_authenticated:
+        logout(request)
+        
     return redirect('/')

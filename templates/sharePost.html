@@ -10,58 +10,64 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1 class="title"><a href="/">BlogOn</h1></a>
-        <h3>Welcome {{user.username}}
-        <a href="/account/logOut"><button>Logout</button></a></h3>
+        <h1 class="title"><a href="/">BlogOn</a></h1>
+        <h3>
+          Welcome {{user.username}}
+          <a href="/account/logOut"><button>Logout</button></a>
+        </h3>
       </div>
       <div class="content-container">
         <div class="blog-list">
-                <div class="blog-hightlight" id="blogId_{{blog.id}}">
-                    <h3>Share " {{blog.title}} " throug email</h3>
-                </div>
-                <div class="post-comment">
-                    <form
-                      action="{% url 'sharePost' blog.id %}"
-                      autocomplete="off"
-                      method="post"
-                      class="post-comment-form"
-                    >
-                      {% csrf_token %}
-                      <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        placeholder="Username:"
-                      /><br />
-                      <input
-                        type="text"
-                        name="emailFrom"
-                        id="emailFrom"
-                        placeholder="Email:"
-                      /><br />
-                      <input
-                        type="text"
-                        name="emailTo"
-                        id="emailTo"
-                        placeholder="EmailTo:"
-                      /><br />
-                      <textarea
-                        name="emailComments"
-                        id="emailComments"
-                        rows="5"
-                        cols="50"
-                        placeholder="Share Comments"
-                      > </textarea><br />
-                      <button type="submit" id="sharePost">Share</button>
-                    </form>
-                </div>
+          <div class="blog-hightlight" id="blogId_{{blog.id}}">
+            <h3>Share " {{blog.title}} " throug email</h3>
+          </div>
+          <div class="post-comment">
+            <form
+              action="{% url 'sharePost' blog.id %}"
+              autocomplete="off"
+              method="post"
+              class="post-comment-form"
+            >
+              {% csrf_token %}
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username:"
+              /><br />
+              <input
+                type="text"
+                name="emailFrom"
+                id="emailFrom"
+                placeholder="Email:"
+              /><br />
+              <input
+                type="text"
+                name="emailTo"
+                id="emailTo"
+                placeholder="EmailTo:"
+              /><br />
+              <textarea
+                name="emailComments"
+                id="emailComments"
+                rows="5"
+                cols="50"
+                placeholder="Share Comments"
+              >
+              </textarea
+              ><br />
+              <button type="submit" id="sharePost">Share</button>
+            </form>
+          </div>
         </div>
         <div class="blog-sum">
-            <h1 class="title">BlogOn</h1>
-            <p class="description">This is my blog</p>
-            <a href="{% url 'writeBlog' %}"><button class="write-blog">Write Blog</button></a>
+          <h1 class="title">BlogOn</h1>
+          <p class="description">This is my blog</p>
+          <a href="{% url 'writeBlog' %}"
+            ><button class="write-blog">Write Blog</button></a
+          >
         </div>
       </div>
     </div>
-</body>
+  </body>
 </html>

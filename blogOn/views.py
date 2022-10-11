@@ -15,15 +15,14 @@ def home(request):
         loggedInId = request.user.id
         loggedInUser = User.objects.get(id = loggedInId)
         userBlogs = Blog.objects.filter(user = loggedInUser).order_by('-datePosted')
-        p = Paginator(userBlogs, 5)
+        paginator = Paginator(userBlogs, 5)
         page_number = request.GET.get('page')
         try:
-            page_obj = p.get_page(page_number) 
+            page_obj = paginator.get_page(page_number) 
         except PageNotAnInteger:
-            page_obj = p.page(1)
+            page_obj = paginator.page(1)
         except EmptyPage:
-            page_obj = p.page(p.num_pages)
-        context = {'page_obj': page_obj}
+            page_obj = paginator.page(paginator.num_pages)
         
         return render(request, 'explore.html', {'page_obj':page_obj})
     else:
@@ -72,6 +71,7 @@ def sharePost(request, pk):
                 return render(request, 'sharePost.html', {'blog':currentBlog})
             else:
                 return redirect('/')
+
     else:
         return redirect('/')
 
@@ -87,6 +87,7 @@ def writeBlog(request):
             return redirect('/')
         elif request.method == "GET":
             return render(request, 'writeBlog.html', {})
+            
     else:
         return redirect('/')
 
